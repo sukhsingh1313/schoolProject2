@@ -83,52 +83,52 @@ WSGI_APPLICATION = 'schoolProject.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# #         # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-  
-# }
-
-# import os
-import dj_database_url
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'school_database',  # Replace with your database name
-        'USER': 'school_database_j5uk_user',  # Replace with your username
-        'PASSWORD': 'jwy2ZMaGo4jQ6XJA097kk9aV00nwLuLD',  # Replace with your actual password
-        'HOST': 'dpg-cv1h48lds78s73ds92ug-a',  # Replace with your host
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+#         # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+  
 }
 
-# If using Render-provided DATABASE_URL, override default settings
-DATABASE_URL = os.getenv('DATABASE_URL')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+# import os
+# import dj_database_url
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'school_database',  # Replace with your database name
+#         'USER': 'school_database_j5uk_user',  # Replace with your username
+#         'PASSWORD': 'jwy2ZMaGo4jQ6XJA097kk9aV00nwLuLD',  # Replace with your actual password
+#         'HOST': 'dpg-cv1h48lds78s73ds92ug-a',  # Replace with your host
+#         'PORT': '5432',
+#     }
+# }
+
+# # If using Render-provided DATABASE_URL, override default settings
+# DATABASE_URL = os.getenv('DATABASE_URL')
+# if DATABASE_URL:
+#     DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 
-import os
-import dj_database_url
-import os
+# import os
+# import dj_database_url
+# import os
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables
+# load_dotenv()  # Load environment variables
 
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+# }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://school_database_j5uk_user:jwy2ZMaGo4jQ6XJA097kk9aV00nwLuLD@dpg-cv1h48lds78s73ds92ug-a.oregon-postgres.render.com/school_database_j5uk"
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default="postgresql://school_database_j5uk_user:jwy2ZMaGo4jQ6XJA097kk9aV00nwLuLD@dpg-cv1h48lds78s73ds92ug-a.oregon-postgres.render.com/school_database_j5uk"
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
