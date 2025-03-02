@@ -1,0 +1,235 @@
+{% extends "base.html" %} 
+{% block title %}About Us{% endblock %} 
+{% load static%}
+ {% block content %}
+
+<style>
+  /* Custom CSS for the About Us page */
+
+  .page-title {
+    font-size: 36px;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  .page-subtitle {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-top: 10px;
+  }
+
+  .section-title {
+    font-size: 30px;
+    color: #34495e;
+    font-weight: bold;
+  }
+
+  .section-text {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .school_mission_section {
+    background-color: #f4f6f6;
+    padding: 40px 0;
+  }
+
+  .core_values_section {
+    background-color: #ecf0f1;
+    padding: 40px 2px;
+  }
+
+  .core-values-list {
+    list-style-type: none;
+    padding: 0;
+    font-size: 18px;
+    color: #555;
+  }
+
+  .core-value-item {
+    margin-bottom: 10px;
+  }
+
+  .history_image img {
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+
+  .history_image img:hover {
+    transform: scale(1.05);
+  }
+
+  .history_content,
+  .mission_content {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .history_content:hover,
+  .mission_content:hover {
+    background-color: #e8f8f5;
+    color: #1abc9c;
+  }
+</style>
+<div class="container" style="margin-top: 200px">
+  <!-- Notification Section -->
+  <div class="notification_section"style=" padding: 20px">
+      <h2  class="text-center mb-4"style="color: #333">Important Notification</h2>
+  {% if is_multiple %} 
+  {% for n in notification %}
+    <div class="container" style="-webkit-box-shadow: -3px -1px 14px 6px #97D5FF; 
+box-shadow: -3px -1px 14px 6px #97D5FF; border-radius: 15px;">
+      <div class="row align-items-center">
+        <!-- Notification Image -->
+        <div class="col-lg-4">
+          {% comment %} <span class="ribbon">new</span> {% endcomment %}
+          <img  src="{{ n.notify_img.url }}" alt="Notification"class="mb-2 mt-2" style="max-width: 80%; border-radius: 8px" />
+        </div>
+        <!-- Notification Text -->
+        <div class="col-lg-8">
+          <div class="notification_content">
+            <h3 style="color: gray">{{ n.name }}</h3>
+            <p style="color: #555">{{ n.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %} 
+    {% else %}
+
+    
+    <div class="container mb-1">
+      <div class="row align-items-center mt-1">
+        <!-- Notification Image -->
+        <div class="col-lg-4">
+          {% comment %} <span class="ribbon">new</span> {% endcomment %}
+          <img  src="{{ notification.notify_img.url }}" class="mb-2"    alt="Notification"   style="max-width: 80%; border-radius: 8px"
+          />
+        </div>
+        <!-- Notification Text -->
+        <div class="col-lg-8">
+          <div class="notification_content">
+            <h2 style="color: #333">Important Notification</h2>
+            <h3 style="color: rgba(46, 84, 166); ">{{ notification.name }}</h3>
+            <p style="color: #555">{{ notification.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+</div>
+
+  <!-- Page Title -->
+  <div class="section_title text-center mb-5">
+    <h1 class="page-title">Our School History & Mission</h1>
+    <p class="page-subtitle">
+      Discover the journey and values that have shaped our school into a leading
+      educational institution.
+    </p>
+  </div>
+
+  <!-- School History Section -->
+  <div class="school_history_section mb-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="history_image ">
+          {% if history.image %}
+          <img src="{{ history.image.url }}" alt="School History" style=" border-radius: 15px;" class="img-fluid rounded shadow-lg" />
+          {% else %}
+          <img
+            src="{% static 'images/default_history.jpg' %}" alt="School History" class="img-fluid rounded shadow-lg"style=" border-radius: 15px;" />
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="history_content">
+          <h2 class="section-title">Our History</h2>
+          <p class="section-text">{{ history.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission Statement Section -->
+  <div class="school_mission_section">
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <div class="mission_content">
+          <h2 class="section-title">Our Mission</h2>
+          <p class="section-text">{{ mission.mission_statement }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Facilities Section -->
+<div class="school_facilities_section mb-5">
+  <div class="row text-center">
+    <div class="col-lg-12">
+      <h2 class="section-title">Our Facilities</h2>
+      <div class="row">
+        {% for facility in facilities %}
+        <div class="col-md-4 mb-4  "style="-webkit-box-shadow: inset -3px -1px 14px 6px rgba(255,166,166,0.99); 
+box-shadow: inset -3px -1px 14px 6px rgba(255,166,166,0.99);  border-radius: 15px;">
+          <div class="staff-card">
+            <img src="{{ facility.image.url }}" alt="{{ facility.name }}" class="img-fluid   mt-2 mb-2" style="width: 150px; height: 150px; border-radius: 15px;" />
+            <h3 class="text-success ">{{ facility.name }}</h3>
+            {% comment %} <h6 class="text-info">{{ .designation }}</h6> {% endcomment %}
+            <p style="color: #A47663;">{{ facility.bio }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Staff Members Section -->
+<div class="school_staff_section mb-5">
+  <div class="row text-center">
+    <div class="col-lg-12">
+      <h2 class="section-title">Meet Our Staff</h2>
+      <div class="row">
+        {% for staff in staff_members %}
+        <div class="col-md-4 mb-4  "style="-webkit-box-shadow: 5px 2px 13px 1px #000000; 
+        box-shadow: 5px 2px 13px 1px #000000;  border-radius: 15px;">
+          <div class="staff-card">
+            <img src="{{ staff.image.url }}" alt="{{ staff.name }}" class="img-fluid rounded-circle  mt-2 mb-2" style="width: 150px; height: 150px;" />
+            <h4 class="text-dark ">{{ staff.name }}</h4>
+            <h6 class="text-info">{{ staff.designation }}</h6>
+            <p style="color: #A47663;">{{ staff.bio }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Vision Section -->
+  <div class="school_vision_section mb-5">
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <h2 class="section-title">Our Vision</h2>
+        <p class="section-text">{{ vision.vision_statement }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Values Section -->
+  <div class="core_values_section mb-3">
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <h2 class="section-title">Our Core Values</h2>
+        <ul class="core-values-list">
+          {% for value in core_values %}
+          <li class="core-value-item">
+            <strong>{{ value.value_name }}:</strong> {{ value.description }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
